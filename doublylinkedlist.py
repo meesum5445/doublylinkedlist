@@ -3,6 +3,7 @@ class node:
         self.data=data
         self.next=next
         self.back=back
+      
 
 class DLL:
     def __init__(self):
@@ -22,9 +23,26 @@ class DLL:
             print("This DL list is empty")
         else:
             temp=self.head
-            for i in range(self.count()):
+            while temp:
                 print(temp.data,"<-->",end="")
                 temp=temp.next
+    def display_reverse(self):
+        if self.head==None:
+            print("This DL list is empty")
+        else:
+            temp=self.head
+            while temp.next:
+                temp=temp.next
+            while temp:
+                print(temp.data,"<-->",end="")
+                temp=temp.back
+    def copy(self):
+      list=DLL()
+      temp=self.head
+      while temp:
+          list.append(temp.data)
+          temp=temp.next
+      return list             
     def count(self):
           temp=self.head
           len=0
@@ -32,15 +50,115 @@ class DLL:
             temp=temp.next
             len=len+1
           return len  
+    def remove(self,data):
+        temp=self.head
+        while temp:
+            if temp.data==data:
+                if temp==self.head:
+                    return self.popstart()
+                elif temp.next==None:
+                    temp2=temp.back
+                    temp.back=None
+                    temp2.next=None
+                    return temp.data
+                else:
+                    temp.next.back=temp.back
+                    temp.back.next=temp.next
+                    return temp.data
+            temp=temp.next
+        return None
+    def pop(self,index):
+        temp=self.head
+        if self.head==None:
+          return None
+        for i in range(index):
+          temp=temp.next
+          if temp==None:
+              return None
+        if temp==self.head:
+            return self.popstart()
+        elif temp.next==None:
+            temp2=temp.back
+            temp.back=None
+            temp2.next=None
+            return temp.data
+        else:
+            temp.next.back=temp.back
+            temp.back.next=temp.next
+            return temp.data
+    def popend(self):
+        if self.head==None:
+            return None
+        elif self.head.next==None:
+            poped_node=self.head
+            
+            self.head=None
+            
+            return poped_node.data
+        else:    
+            temp=self.head
+            
+            while temp.next.next:
+                temp=temp.next
+            poped_node=temp.next
+            
+            temp.next=None
+            return poped_node.data
+    def popstart(self):
+        if self.head==None:
+            return None
+        elif self.head.next==None:
+            poped_node=self.head
+            
+            self.head=None
+            
+            return poped_node.data
+        else:
+            temp=self.head
+            poped_node=temp
+            
+            self.head=temp.next
+            temp.next.back=None
+            return poped_node.data
+    def index(self,data):
+        temp=self.head
+        result=False
+        index=0
+        while temp:
+            if temp.data==data:
+                result=True
+                break
+            temp=temp.next
+            index=index+1
+        if result==True:
+            return index
+        else:
+            return None
+    def value(self,index):
+      temp=self.head
+      if self.head==None:
+          return None
+      for i in range(index):
+          if temp.next==None:
+              return None
+          temp=temp.next
+      return temp.data
+    def clear(self):
+        while self.head!=None:
+            if self.head.next==None:
+                self.head=None
+            else:
+                temp=self.head
+                self.head=temp.next
+                temp.next.back=None
+    
 l1=DLL()
-l1.append(5)
-l1.append(10)
-l1.append(15)
-l1.append(20)
-l1.append(25)
-l1.append(30)
-l1.append(35)
-l1.append(40)
-
+# l1.append(5)
+# l1.append(10)
+# l1.append(15)
 l1.display()
-print(l1.count())
+print("\n")
+l1.display_reverse()
+print("\n")
+print(l1.pop(0))
+l1.display()
