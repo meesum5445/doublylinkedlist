@@ -18,6 +18,27 @@ class DLL:
                 temp=temp.next
             temp.next=n
             n.back=temp
+    def insert(self,index,data):
+        n=node(data)
+        temp=self.head
+        if self.head!=None:
+                for i in range(index):
+                    if temp.next==None:
+                        self.append(data)
+                        return None
+                    temp=temp.next
+                if index==0:
+                        self.head.back=n
+                        n.next=self.head
+                        self.head=n
+                else:
+                    print(temp.data)
+                    n.next=temp
+                    n.back=temp.back
+                    temp.back.next=n
+                    temp.back=n
+        else:
+            self.append(data)
     def display(self):
         if self.head==None:
             print("This DL list is empty")
@@ -151,14 +172,25 @@ class DLL:
                 temp=self.head
                 self.head=temp.next
                 temp.next.back=None
-    
+    def sum_of_maxsubscript(self):
+        c=0
+        m=0
+        temp=self.head
+        while temp:
+            a=temp.data+c
+            c=max(temp.data,a)
+            m=max(m,c)
+            temp=temp.next
+        return m
 l1=DLL()
-# l1.append(5)
-# l1.append(10)
-# l1.append(15)
+l1.append(5)
+l1.append(-4)
+l1.append(5)
+l1.append(6)
+l1.append(-10)
+l1.append(15)
 l1.display()
 print("\n")
-l1.display_reverse()
-print("\n")
-print(l1.pop(0))
-l1.display()
+
+print(l1.sum_of_maxsubscript())
+
