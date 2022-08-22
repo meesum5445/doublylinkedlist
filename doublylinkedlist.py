@@ -182,15 +182,55 @@ class DLL:
             m=max(m,c)
             temp=temp.next
         return m
+    def make_cycle(self,index):
+        temp=self.head
+        cycled_node=None
+        i=0
+        while temp.next:
+            if i==index:
+                cycled_node=temp
+            temp=temp.next
+            i=i+1
+        if not cycled_node:
+            cycled_node=temp
+        temp.next=cycled_node
+    def find_cycle(self):
+        temp=self.head
+        turtle=temp
+        rabbit=temp
+        while rabbit.next and rabbit.next.next:
+            turtle=turtle.next
+            rabbit=rabbit.next.next
+            if turtle==rabbit:
+                return True
+        
 l1=DLL()
 l1.append(5)
-l1.append(-4)
-l1.append(5)
 l1.append(6)
-l1.append(-10)
+l1.append(7)
+l1.append(8)
+l1.append(10)
 l1.append(15)
 l1.display()
 print("\n")
 
-print(l1.sum_of_maxsubscript())
-
+l1.make_cycle(0)
+n1=l1.head.data
+print(n1)
+n2=l1.head.next.data
+print(n2)
+n3=l1.head.next.next.data
+print(n3)
+n4=l1.head.next.next.next.data
+print(n4)
+n5=l1.head.next.next.next.next.data
+print(n5)
+n6=l1.head.next.next.next.next.next.data
+print(n6)
+n7=l1.head.next.next.next.next.next.next.data
+print(n7)
+n8=l1.head.next.next.next.next.next.next.next.data
+print(n8)
+n9=l1.head.next.next.next.next.next.next.next.next.data
+print(n9)
+print(l1.find_cycle())
