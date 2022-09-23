@@ -205,32 +205,3 @@ class DLL:
                 return True
         
 l1=DLL()
-l1.append(5)
-l1.append(6)
-l1.append(7)
-l1.append(8)
-l1.append(10)
-l1.append(15)
-l1.display()
-print("\n")
-
-l1.make_cycle(0)
-n1=l1.head.data
-print(n1)
-n2=l1.head.next.data
-print(n2)
-n3=l1.head.next.next.data
-print(n3)
-n4=l1.head.next.next.next.data
-print(n4)
-n5=l1.head.next.next.next.next.data
-print(n5)
-n6=l1.head.next.next.next.next.next.data
-print(n6)
-n7=l1.head.next.next.next.next.next.next.data
-print(n7)
-n8=l1.head.next.next.next.next.next.next.next.data
-print(n8)
-n9=l1.head.next.next.next.next.next.next.next.next.data
-print(n9)
-print(l1.find_cycle())
